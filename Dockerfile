@@ -1,7 +1,4 @@
-FROM registry.artifakt.io/%%RUNTIME_NAME%%:%%RUNTIME_VERSION%%
-
-ENV APP_DEBUG=0
-ENV APP_ENV=prod
+FROM registry.artifakt.io/vuejs:3
 
 ARG CODE_ROOT=.
 
@@ -9,9 +6,19 @@ COPY --chown=www-data:www-data $CODE_ROOT /var/www/html
 
 WORKDIR /var/www/html
 
+COPY --chown=www-data:www-data $CODE_ROOT/package* /var/www/html/
+
+WORKDIR /var/www/html
+
+# dependency management
+RUN if [ -f package-lock.json ]; then npm install; fi
+
+COPY --chown=www-data:www-data $CODE_ROOT /var/www/html/
+
 # copy the artifakt folder on root
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN  if [ -d .artifakt ]; then cp -rp /var/www/html/.artifakt /.artifakt/; fi
+COPY --chown=www-data:www-data ./.artifakt/* /var/www/html/.artifakt/
+RUN if [ -d .artifakt ]; then cp -rp /var/www/html/.artifakt /.artifakt/; fi
 
 # run custom scripts build.sh
 # hadolint ignore=SC1091

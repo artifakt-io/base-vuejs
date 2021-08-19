@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>Artifakt Sample %%RUNTIME_NAME%% App</h1>
+<h1>Artifakt Sample Vuejs App</h1>
 <img src="./.github/logo.png" alt="artifakt-logo" width="100"/>
 
 **Sample Demo App by Artifakt PaaS**
@@ -31,11 +31,13 @@ Container configuration tries to stick to 12-factor app principles as much as po
 
 ## Pre configurated Docker compose stack
 
-You can use this stack to run a complete Sylius stack with MySQL in a few docker-compose lines.
+You can use this stack to run a simple VueJs stqck in a few docker-compose lines.
 
 ```
 docker-compose --env-file=.env up -d --build
 ```
+
+NOTE: this sample repo takes code source from `src` folder. If you need this changed, please update the CODE_ROOT argument accordingly in `docker-compose.yaml`
 
 ## Adding custom code
 
