@@ -8,6 +8,6 @@ echo PLACE HERE SPECIFIC BUILD COMMANDS
 
 cd /var/www/html
 
-npm build && ./node_modules/.bin/vite build
+./node_modules/.bin/vite build
 
 echo ">>>>>>>>>>>>>> END CUSTOM BUILD SCRIPT <<<<<<<<<<<<<<<<< "
